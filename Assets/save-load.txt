@@ -1,0 +1,57 @@
+using UnityEngine ;
+using System . Collections ;
+
+using System ;
+using System . Runtime . Serialization . Formatters . Binary ;
+using System . IO ;
+
+[ Serializable ]
+class PlayerData
+{
+	public int health ;
+}
+
+public class GameControl : MonoBehaviour {
+	public static GameControl control ;
+	public int health ;
+
+	void Awake () {
+		if ( control == null ) {
+			DontDestroyOnLoad ( gameObject );
+			control = this ;
+		} 
+		else if ( control != this ) {
+			Destroy ( gameObject );
+		}
+	}
+
+	public void Save () { ... }
+
+	public void Load () { ... }
+
+}
+
+
+public void Save ()
+{
+	string filename = Application . persistentDataPath + "/ playInfo . dat ";
+	BinaryFormatter bf = new BinaryFormatter () ;
+	FileStream file = File . Open ( filename , FileMode . OpenOrCreate );
+	PlayerData pd = new PlayerData () ;
+	pd . health = health ;
+	bf . Serialize ( file , pd );
+	file . Close () ;
+}
+public void Load ()
+{
+	string filename = Application . persistentDataPath + "/ playInfo . dat ";
+	if ( File . Exists ( filename ) )
+	{
+		BinaryFormatter bf = new BinaryFormatter () ;
+		FileStream file = File . Open ( filename , FileMode . Open ) ;
+		PlayerData pd = ( PlayerData ) bf . Deserialize ( file ) ;
+		file . Close () ;
+
+		health = pd . health ;
+	}
+}
