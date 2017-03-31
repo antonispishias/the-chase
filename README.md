@@ -18,3 +18,18 @@ Kill Enemies one after the other in quick succession (kill streak) and see your 
 4. Press play in Unity
 
 ## How to build
+
+File -> Build & Run
+
+## Controls
+```
+Accelerate          UP ARROW
+Turn Left	          LEFT ARROW
+Turn Right          RIGHT ARROW
+Decelerate/Reverse	DOWN ARROW
+Shoot Laser Bolts	  SPACE
+Use Power Up        LEFT ALT
+Pause/Unpause       P
+```
+
+Also for more info see the [documentation](the-chase/Documentation.pdf) pdf
